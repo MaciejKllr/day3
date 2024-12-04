@@ -16,7 +16,13 @@ async function handleSubmit(e) {
 }
 
 async function getBlogs() {
-  blogs.value = await my_project_backend.get_blogs()
+  const tempBlogs = await my_project_backend.get_blogs()
+  blogs.value = tempBlogs.map((blog) => {
+    return {
+      ...blog,
+      date: blog.date.toString()
+    }
+  })
 }
 getBlogs()
 </script>
